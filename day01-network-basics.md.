@@ -1,0 +1,69 @@
+# Day 1 — Networking Fundamentals
+
+## Objective
+Understand network interfaces, IPv4 addresses, default gateways, and routing tables through practical exercises on Windows and Kali Linux.
+
+## Concepts Learned
+
+- **Network:** A group of devices that communicate and share information.
+- **Network interface:** A connection used by a device to communicate over a network.
+- **IPv4 address:** A logical address used to identify a network interface.
+- **Default gateway:** The next hop used to reach destinations outside the local network when no more specific route matches.
+- **Routing table:** Information the operating system uses to determine where network traffic should go.
+
+## Practical 1 — Windows
+
+**Command used:**
+```cmd
+ipconfig
+ipconfig /all
+```
+
+**Observations:**
+- Adapter inspected: Ethernet 2
+- IPv4 address: Present
+- DHCP Enabled: Yes
+- Default Gateway: Blank
+
+**Learning:** DHCP being enabled does not guarantee that a default gateway will be assigned. Further investigation would be needed to determine why the gateway is missing.
+
+## Practical 2 — Kali Linux
+
+**Commands used:**
+```bash
+ip -br addr
+ip route
+```
+
+**Observations:**
+- Loopback interface: `lo`
+- Network interface: `eth0`
+- Interface status: `UP`
+- IPv4 address: `10.0.2.15/24`
+- Default gateway: `10.0.2.2`
+- Connected network: `10.0.2.0/24`
+
+**Learning:**
+- `lo` is the loopback interface.
+- `eth0` is the active Ethernet interface.
+- `ip -br addr` displays interfaces and their addresses in a compact format.
+- `ip route` displays routing information.
+- `/24` corresponds to the subnet mask `255.255.255.0`.
+- The results are consistent with VirtualBox NAT networking.
+
+## Key Takeaways
+
+1. Network interfaces can have multiple IP addresses.
+2. An active interface does not necessarily mean a default route exists.
+3. Windows and Linux use different commands to display network configuration.
+4. The routing table helps determine the next hop for network traffic.
+
+## Challenges
+
+The Windows Ethernet 2 adapter had no default gateway listed, even though DHCP was enabled. The cause has not yet been determined.
+
+## Next Step
+
+Learn the difference between private and public IP addresses and practise identifying them.
+
+**Day 1 complete:** Practised basic network inspection on Windows and Kali Linux and documented the observations.
