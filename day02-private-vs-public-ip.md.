@@ -1,0 +1,45 @@
+# Day 2 — Private IP vs Public IP
+
+**Challenge:** 90 Days of Cybersecurity
+**Environment:** Windows + Kali Linux
+
+## Objective
+
+Understand the difference between private and public IPv4 addresses through practical inspection.
+
+## Concepts Learned
+
+- **Private IP:** Used within private networks.
+- **Public IP:** An internet-routable address used to identify a network-facing endpoint.
+- **NAT:** Translates network addresses so devices using private IPs can communicate with external networks.
+
+## Practical Work
+
+### 1. Windows
+
+**Command:** `ipconfig`
+
+**What I did:** Inspected the IPv4 address of my network adapter.
+
+### 2. Kali Linux
+
+**Command:** `ip -br addr`
+
+**What I did:** Inspected the network interface and its assigned IP address.
+
+
+
+### 3. Public IP Check
+
+**Method:** Used a browser to check the internet-facing IP address.
+
+
+
+## Key Takeaways
+
+- Private IP addresses are used within private networks.
+- Public IP addresses are used for internet-facing communication.
+- NAT can allow multiple devices using private IP addresses to share a public-facing address.
+- An IP address alone does not tell the whole story of how a device connects to the internet.
+
+##
