@@ -1,0 +1,115 @@
+# Day 07 – HTTP & HTTPS Traffic Analysis
+
+## Objective
+To understand HTTP and HTTPS communication, observe TLS handshake packets, and analyze encrypted application data using Wireshark.
+
+## Environment
+- Operating System: Kali Linux
+- Packet Analyzer: Wireshark 4.6.6
+- Network Interface: eth0
+- Client IP: 10.0.2.15
+
+## Tools Used
+- Wireshark
+- curl
+- Kali Linux Terminal
+
+## 1. HTTPS Traffic Analysis
+
+### Command
+```bash
+curl -I https://example.com
+```
+
+### Wireshark Filter
+```text
+tcp.port == 443
+```
+
+### Observations
+- HTTPS traffic was captured successfully.
+- TCP port 443 was observed.
+- TLSv1.3 packets were identified.
+- Application Data packets were exchanged between the client and server.
+- Encrypted application data was not directly readable in the capture.
+
+## 2. TLS Handshake Analysis
+
+### Wireshark Filter
+```text
+tls.handshake
+```
+
+### Observed Packets
+- Client Hello
+- Server Hello
+
+### Explanation
+Client Hello initiates TLS negotiation by sending supported TLS versions and security parameters.
+
+Server Hello selects compatible TLS parameters for the connection.
+
+TLS establishes encryption keys, allowing subsequent application data to be protected.
+
+## 3. Encrypted Application Data
+
+### Wireshark Filter
+```text
+tls.app_data
+```
+
+### Observations
+- TLSv1.3 Application Data packets were visible.
+- Client-to-server and server-to-client encrypted traffic was observed.
+- Packet lengths and communication metadata remained visible.
+- Actual protected application content was not readable.
+
+## 4. HTTP Response Header Analysis
+
+### Command
+```bash
+curl -I https://example.com
+```
+
+### Observed Response
+```text
+HTTP/2 200
+content-type: text/html; charset=utf-8
+server: cloudflare
+```
+
+### Explanation
+- HTTP 200 indicates a successful response.
+- Content-Type identifies the response content format.
+- Server header identifies the responding server infrastructure.
+
+## 5. HTTP vs HTTPS
+
+| HTTP | HTTPS |
+|---|---|
+| Application protocol without TLS protection | HTTP secured using TLS |
+| Data is not encrypted by HTTP itself | Application data is encrypted in transit |
+| Commonly uses port 80 | Commonly uses port 443 |
+| Content may be readable in packet capture | Content is generally encrypted |
+
+## 6. Wireshark Filters Practiced
+
+| Filter | Purpose |
+|---|---|
+| `tcp.port == 443` | HTTPS-related TCP traffic |
+| `tls.handshake` | TLS handshake packets |
+| `tls.app_data` | TLS application data |
+| `tcp.port == 80` | HTTP-related TCP traffic |
+
+## 7. Key Learnings
+- Understood the difference between HTTP and HTTPS.
+- Learned how TLS Client Hello and Server Hello work.
+- Identified TLSv1.3 encrypted application data.
+- Understood that HTTPS protects application content while network metadata remains visible.
+- Practiced packet filtering and traffic analysis in Wireshark.
+- Learned how curl can inspect HTTP response headers.
+
+## Conclusion
+Successfully analyzed HTTPS traffic, observed TLS handshake messages, and identified encrypted application data using Wireshark. This practical improved my understanding of secure web communication and network traffic analysis.
+
+**Day 7/90 – Completed**
